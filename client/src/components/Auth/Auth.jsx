@@ -1,9 +1,27 @@
 import React from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { AuthContext } from '../../context/AuthContext'
+
 import './Auth.scss'
 
-const Auth = ({changeHandler, loginHandler}) => {
+
+const Auth = ({changeHandler, form}) => {
+  const {login} = useContext(AuthContext)
   
+  const loginHandler = async () => {
+    try {
+      await axios.post('/api/auth/login', {...form}, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => login(response.data.token, response.data.userId))
+    } catch (error) {
+      // console.log(response.data.token, response.data.userId)
+    }
+  }
 
   return (
     <div className='auth-page'>
