@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const Registration = ({changeHandler, form}) => {
+
+  const history = useHistory()
 
   const registerHandler = async () => {
     try {
@@ -11,7 +13,7 @@ const Registration = ({changeHandler, form}) => {
           'Content-Type': 'application/json'
         }
       })
-      .then(response => console.log(response))
+      history.push('/')
     } catch (error) {
       console.log(error)
     }

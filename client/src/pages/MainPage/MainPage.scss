@@ -9,6 +9,24 @@
     align-items: center;
     cursor: pointer;
     border-left: 2px solid #2196f3;
+    position: relative;
+
+    &.completed {
+      &::after {
+        position: absolute;
+        content: "";
+        left: 25px;
+        top: 50%;
+        width: 800px;
+        height: 2px;
+        background: #2196f3;
+      }
+    }
+
+    &.important {
+      font-weight: 500;
+      color: #ff9800;
+    }
   }
 
   &-buttons {
